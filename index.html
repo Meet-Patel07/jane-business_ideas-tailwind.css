@@ -1,0 +1,675 @@
+<html>
+
+<head>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+
+    <title>Jane | Business Ideas</title>
+
+    <!-- Tailwind Files Link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="src/output.css"></script>
+    <script src="tailwind.config.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+
+    <!-- Animate CSS CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- Back to Top Button CDN Link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Font Awsome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Slider -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700">
+
+    <!-- Style-Sheet CSS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Slider */
+        .testimonial-slider {
+            background-color: #5072a7;
+            padding: 2em 2em 3em;
+        }
+
+        .testimonial-title {
+            color: #fff;
+        }
+
+        .testimonial-title h2 {
+            padding-left: 0.2em;
+        }
+
+        .card {
+            margin: 0 0.5em;
+            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+            border: none;
+            height: 100%;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            background-color: #fff;
+            width: 3em;
+            height: 3em;
+            border-radius: 50%;
+            top: 60%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 576px) {
+            .carousel-item {
+                margin-right: 0;
+                flex: 0 0 50%;
+                display: block;
+            }
+
+            .carousel-inner {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .carousel-inner {
+                padding: 1em;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                opacity: 1;
+                position: absolute;
+                left: 1em;
+                top: 90%;
+                transform: translateY(-50%);
+            }
+
+            .carousel-control-next {
+                left: 5em;
+            }
+        }
+
+
+        /* Back to Top Button */
+        #button {
+            display: inline-block;
+            background-color: #20B2AA;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            transition: background-color .3s,
+                opacity .5s, visibility .5s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        #button::after {
+            content: "\f077";
+            font-family: FontAwesome;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 2em;
+            line-height: 50px;
+            color: #fff;
+        }
+
+        #button:hover {
+            cursor: pointer;
+            background-color: #333;
+        }
+
+        #button:active {
+            background-color: #555;
+        }
+
+        #button.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="py-2 bg-gray-100 text-gray-900 min-h-screen">
+
+        <!-- Header -->
+        <header class="px-5 sm:px-10 md:px-10 md:py-5 lg:px-20 flex items-center justify-between">
+
+            <div>
+                <img src="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d2e4816a.png&w=128&q=75"
+                    class="w-32 wow animate__animated animate__fadeInDown animate__fast">
+            </div>
+
+            <div x-data="{ navOpen: false }">
+
+                <button @click="navOpen = true">
+                    <svg class="cursor-pointer text-gray-700 hover:text-gray-900 w-6 md:hidden"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+
+                <div :class="{'hidden': !navOpen}"
+                    class="md:block fixed top-0 inset-x-0 bg-white p-8 m-4 z-30 rounded-lg shadow md:rounded-none md:shadow-none md:p-0 md:m-0 md:relative md:bg-transparent">
+
+                    <button @click="navOpen = false" class="absolute top-0 right-0 mr-5 mt-5 md:hidden">
+
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-x">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Navbar -->
+                    <div
+                        class="flex flex-col items-center justify-center md:block wow animate__animated animate__fadeInDown animate__fast">
+                        <a href="#index.html" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+              hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                            Home
+                        </a>
+                        <a href="#about" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+              hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                            About
+                        </a>
+                        <a href="#work" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+              hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                            Work
+                        </a>
+                        <a href="#blog" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+              hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                            Blog
+                        </a>
+                        <a href="#reviews" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+                        hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                            Reviews
+                        </a>
+                        <a href="#contact" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+                    hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                            Contact
+                        </a>
+                        <button class="wow animate__animated animate__fadeInDown animate__slower border border-transparent rounded font-semibold tracking-wide text-lg md:text-sm px-5 py-3 md:py-2
+              focus:outline-none focus:shadow-outline bg-slate-200 text-gray-900 hover:bg-indigo-800
+              hover:text-gray-200 transition-all duration-300 ease-in-out my-4 md:my-0 w-full md:w-auto">
+                            Book a Call
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Main Section -->
+        <main>
+
+            <!-- Home Section -->
+            <div id="hero" class="pt-5 lg:flex items-center">
+
+                <div
+                    class="px-5 sm:px-10 md:px-10 md:flex lg:block lg:w-1/2 lg:max-w-3xl lg:mr-8 lg:px-20 wow animate__animated animate__fadeInLeft animate__slow">
+
+                    <div class="md:w-1/2 md:mr-10 lg:w-full lg:mr-0">
+
+                        <h1 class="text-3xl xl:text-5xl font-black md:leading-none xl:leading-tight">
+                            Helping businesses turn their ideas into reality
+                        </h1>
+
+                        <p class="mt-4 xl:mt-2">
+                            I'm a passionate developer, entrepreneur, and general technology enthusiast living in San
+                            Francisco. I've worked with hundreds of startups to help them develop their ideas into
+                            profitable businesses.
+                        </p>
+
+                    </div>
+
+                    <div class="flex-1">
+                        <div>
+                            <button
+                                class="transition-all duration-300 mt-5 w-full border border-transparent rounded font-semibold tracking-wide text-sm px-5 py-4 focus:outline-none focus:shadow-outline bg-indigo-500 text-gray-100 hover:bg-indigo-600 hover:text-gray-200">Book
+                                a call with me</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-6 w-full flex-1 lg:mt-0  wow animate__animated animate__fadeInRight animate__slow">
+                    <img class="sm:mx-auto md:mx-auto xl:mx-auto rounded-full"
+                        src="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero-portrait.5fcdea2f.jpg&w=512&q=75" />
+                </div>
+
+            </div>
+
+            <!-- Solutiion Section -->
+            <div class="flex items-center justify-around flex-col sm:flex-row p-20 bg-slate-100 md:grid-cols-2"
+                id="about">
+                <div class="p-12 md:p-5 flex justify-center items-center">
+
+                    <div class="max-w-md">
+                        <h1 class="font-bold text-5xl lg:text-center lg:text-5xl mb-6">I'm your <span
+                                class="text-blue-500"> all-in-one</span>
+                            project solution</h1>
+                    </div>
+
+                </div>
+
+                <div class="par max-w-md">
+                    <p class="font-semibold text-xl text-justify text-gray-700 mb-6 leading-relaxed">
+                        Experience the advantage of an all-inclusive project solution, where excellence, speed, and
+                        responsiveness converge to ensure the highest quality outcome.</p>
+                </div>
+            </div>
+
+            <!-- Companies Section -->
+            <div class="p-5 sm:px-10 md:px-20 shadow-lg bg-slate-100 mt-10 mb-10" id="work">
+                <div class="max-w-screen-xl mx-auto wow animate__animated animate__fadeInDown animate__slow">
+                    <img class="mx-auto"
+                        src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846471026680582071-Strip-Payment-Logos.png">
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Popular Designers Section -->
+    <div class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-gray-100">
+
+        <div class="max-w-screen-xl mx-auto mt-28 mb-28">
+
+            <h3
+                class="leading-none font-black text-5xl text-center wow animate__animated animate__fadeInDown animate__slow">
+                Check
+                out my latest work</h3>
+
+            <p class="font-semibold tracking-wider font-serif text-2xl text-center mt-10 text-blue-500">My goal is to
+                create effective digital experiences that
+                make people’s lives easier and better. I hope my work is a reflection of this.</p>
+        </div>
+    </div>
+
+    <!-- Posts Section -->
+    <div class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-indigo-100" id="blog">
+
+        <div class="max-w-screen-xl mx-auto">
+
+            <div class="xl:flex">
+
+                <div>
+
+                    <h3
+                        class="leading-none font-black text-3xl wow animate__animated animate__fadeInDown animate__slow mx-auto">
+                        Thoughts on design, business and indie-hacking</h3>
+
+                    <div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-around">
+
+                        <a href="#"
+                            class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8 wow animate__animated animate__fadeInUpBig animate__slow">
+                            <div
+                                class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg bg-gray-100 relative">
+                                <div class="w-full h-48 bg-cover rounded-t-lg"
+                                    style='background-image:
+                      url("https://images.unsplash.com/photo-1633555741617-a8308850847b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8YWV1NnJMLWo2ZXd8fGVufDB8fHx8fA%3D%3D");'>
+                                </div>
+                                <div class="p-6">
+                                    <div class="text-lg font-bold">ChatGPT : A Developer's Best Friend or Worst Enemy?
+                                    </div>
+                                    <div class="mt-2 text-gray-900 text-sm">
+                                        Learn how to create a new design system that is beautiful and efficient
+                                        for creating your UI
+                                        components.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#"
+                            class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8 wow animate__animated animate__fadeInDownBig animate__slow">
+                            <div
+                                class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg bg-gray-100 relative">
+                                <div class="w-full h-48 bg-cover rounded-t-lg"
+                                    style='background-image:
+                      url("https://plus.unsplash.com/premium_photo-1661422030303-f272f90ed5c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE1fGFldTZyTC1qNmV3fHxlbnwwfHx8fHw%3D");'>
+                                </div>
+                                <div class="p-6">
+                                    <div class="text-lg font-bold">8 Ways Designers Can Make Money Online in 2022</div>
+                                    <div class="mt-2 text-gray-900 text-sm">
+                                        Good Icons are hard to come by. This article guides you on how to create
+                                        beautiful sketched
+                                        icons using a drawing pad.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#"
+                            class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8 wow animate__animated animate__fadeInUpBig animate__slow">
+                            <div
+                                class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg bg-gray-100 relative">
+                                <div class="w-full h-48 bg-cover rounded-t-lg"
+                                    style='background-image:
+                      url("https://plus.unsplash.com/premium_photo-1667223323423-a1a5c766263e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDQyfGFldTZyTC1qNmV3fHxlbnwwfHx8fHw%3D");'>
+                                </div>
+                                <div class="p-6">
+                                    <div class="text-lg font-bold">Will Artificial Intelligence Replace Designers?
+                                    </div>
+                                    <div class="mt-2 text-gray-900 text-sm">
+                                        Learn how to create a new design system that is beautiful and efficient
+                                        for creating your UI
+                                        components.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Feature Section -->
+    <div class="relative font-inter antialiased" id="reviews">
+
+        <main class="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden">
+
+            <h3
+                class="leading-none font-black text-3xl wow animate__animated animate__fadeInDown animate__slow mx-auto">
+                Our Reviews</h3>
+
+            <div class="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
+                <div class="flex justify-center">
+
+                    <!-- Fancy testimonial slider component -->
+                    <div class="w-full max-w-3xl mx-auto text-center" x-data="slider">
+                        <!-- Testimonial image -->
+                        <div class="relative h-32">
+                            <div
+                                class="absolute top-0 left-1/2 -translate-x-1/2 w-[480px] h-[480px] pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b before:from-indigo-500/25 before:via-indigo-500/5 before:via-25% before:to-indigo-500/0 before:to-75% before:rounded-full before:-z-10">
+                                <div
+                                    class="h-32 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_20%,theme(colors.white))]">
+                                    <!-- Alpine.js template for testimonial images: https://github.com/alpinejs/alpine#x-for -->
+                                    <template x-for="(testimonial, index) in testimonials" :key="index">
+                                        <div x-show="active === index" class="absolute inset-0 -z-10"
+                                            x-transition:enter="transition ease-[cubic-bezier(0.68,-0.3,0.32,1)] duration-700 order-first"
+                                            x-transition:enter-start="opacity-0 -rotate-[60deg]"
+                                            x-transition:enter-end="opacity-100 rotate-0"
+                                            x-transition:leave="transition ease-[cubic-bezier(0.68,-0.3,0.32,1)] duration-700"
+                                            x-transition:leave-start="opacity-100 rotate-0"
+                                            x-transition:leave-end="opacity-0 rotate-[60deg]">
+                                            <img class="relative top-11 left-1/2 -translate-x-1/2 rounded-full"
+                                                :src="testimonial.img" width="56" height="56" :alt="testimonial.name">
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Text -->
+                        <div class="mb-9">
+                            <div class="relative flex flex-col transition-all duration-150 delay-300 ease-in-out"
+                                x-ref="testimonials">
+                                <!-- Alpine.js template for testimonials: https://github.com/alpinejs/alpine#x-for -->
+                                <template x-for="(testimonial, index) in testimonials" :key="index">
+                                    <div x-show="active === index"
+                                        x-transition:enter="transition ease-in-out duration-500 delay-200 order-first"
+                                        x-transition:enter-start="opacity-0 -translate-x-4"
+                                        x-transition:enter-end="opacity-100 translate-x-0"
+                                        x-transition:leave="transition ease-out duration-300 delay-300 absolute"
+                                        x-transition:leave-start="opacity-100 translate-x-0"
+                                        x-transition:leave-end="opacity-0 translate-x-4">
+                                        <div class="text-2xl font-bold text-slate-900 before:content-['\201C'] after:content-['\201D']"
+                                            x-text="testimonial.quote"></div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="flex flex-wrap justify-center -m-1.5">
+                            <!-- Alpine.js template for buttons: https://github.com/alpinejs/alpine#x-for -->
+                            <template x-for="(testimonial, index) in testimonials" :key="index">
+                                <button
+                                    class="inline-flex justify-center whitespace-nowrap rounded-full px-3 py-1.5 m-1.5 text-xs shadow-sm focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600 transition-colors duration-150"
+                                    :class="active === index ? 'bg-indigo-500 text-white shadow-indigo-950/10' : 'bg-white hover:bg-indigo-100 text-slate-900'"
+                                    @click="active = index; stopAutorotate();">
+                                    <span x-text="testimonial.name"></span> <span
+                                        :class="active === index ? 'text-indigo-200' : 'text-slate-300'">-</span>
+                                    <span x-text="testimonial.role"></span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                    <!-- Script -->
+                    <script>
+                        document.addEventListener('alpine:init', () => {
+                            Alpine.data('slider', () => ({
+                                active: 0,
+                                autorotate: true,
+                                autorotateTiming: 7000,
+                                testimonials: [
+                                    {
+                                        img: 'https://cruip-tutorials.vercel.app/fancy-testimonials-slider/testimonial-01.jpg',
+                                        quote: "The ability to capture responses is a game-changer. If a user gets tired of the sign up and leaves, that data is still persisted. Additionally, it's great to select between formats.",
+                                        name: 'Jessie J',
+                                        role: 'Acme LTD'
+                                    },
+                                    {
+                                        img: 'https://cruip-tutorials.vercel.app/fancy-testimonials-slider/testimonial-02.jpg',
+                                        quote: "Having the power to capture user feedback is revolutionary. Even if a participant abandons the sign-up process midway, their valuable input remains intact.",
+                                        name: 'Nick V',
+                                        role: 'Malika Inc.'
+                                    },
+                                    {
+                                        img: 'https://cruip-tutorials.vercel.app/fancy-testimonials-slider/testimonial-03.jpg',
+                                        quote: "The functionality to capture responses is a true game-changer. Even if a user becomes fatigued during sign-up and abandons the process, their information remains stored.",
+                                        name: 'Amelia W',
+                                        role: 'Panda AI'
+                                    },
+                                ],
+                                init() {
+                                    if (this.autorotate) {
+                                        this.autorotateInterval = setInterval(() => {
+                                            this.active = this.active + 1 === this.testimonials.length ? 0 : this.active + 1
+                                        }, this.autorotateTiming)
+                                    }
+                                    this.$watch('active', callback => this.heightFix())
+                                },
+                                stopAutorotate() {
+                                    clearInterval(this.autorotateInterval)
+                                    this.autorotateInterval = null
+                                },
+                                heightFix() {
+                                    this.$nextTick(() => {
+                                        this.$refs.testimonials.style.height = this.$refs.testimonials.children[this.active + 1].offsetHeight + 'px'
+                                    })
+                                }
+                            }))
+                        })
+                    </script>
+                    <!-- End: Fancy testimonial slider component -->
+
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Get in Touch -->
+    <div id="contact" class="bg-gray-800">
+
+        <div class="text-center py-12 px-6 mt-12">
+
+            <h1 class="font-display font-bold text-5xl mb-6 text-white font-serif">Get in touch</h1>
+            <p class="max-w-lg mx-auto"></p>
+
+        </div>
+
+        <div class="container mx-auto px-6 mb-12">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-4xl mx-auto text-white">
+
+                <div>
+                    <a href="tel:01632 960192" class="flex items-center my-2 font-serif">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                            </path>
+
+                        </svg> +91 1234 567 890
+                    </a>
+
+                    <a href="mailto:2321 Wildwood Street, OH, 44503" class="flex items-center my-2 font-serif">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+
+                        </svg> meetpatel0811@gmail.com
+                    </a>
+
+                    <div class="flex items-center my-2 font-serif">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+
+                        </svg> MON-SAT = 9:00 AM - 5:00 PM <br> SUN = 10:00 AM - 4:00 PM
+                    </div>
+
+                    <a href="https://www.google.com/maps/place/2321 Wildwood Street, OH, 44503" target="_blank"
+                        class="flex items-center my-2 font-serif">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                            </path>
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+
+                        </svg> 2321 Wildwood Street, OH, 44503
+                    </a>
+                </div>
+
+                <div>
+                    <form name="contact"><input type="hidden" name="form-name" value="contact">
+                        <div>
+                            <label class="block text-base tracking-tight text-slate-200">Name</label>
+                            <input name="name" type="text" placeholder="Name" required=""
+                                class="mt-2 w-full border-none text-sm p-4 bg-stone-600 text-black rounded-xl shadow-2xl">
+                        </div>
+
+                        <div class="mt-6">
+                            <label class="block text-base tracking-tight text-gray-600">Email
+                                address</label>
+                            <input name="email" type="email" placeholder="your@gmail.com" required=""
+                                class="mt-2 w-full border-none text-sm p-4 bg-stone-600 text-black rounded-xl shadow-2xl">
+                        </div>
+
+                        <div class="mt-6">
+                            <label class="block text-base tracking-tight text-gray-600 ">Message</label>
+                            <textarea name="message" placeholder="Your message" required=""
+                                class="mt-2 w-full border-none text-sm p-4 bg-stone-600 text-black rounded-xl shadow-2xl"></textarea>
+                        </div>
+
+                        <button
+                            class="inline-block bg-gray-900 text-white uppercase text-sm tracking-widest font-heading px-8 py-4 mt-6 rounded-xl shadow-2xl">Send
+                            message</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="px-5 sm:px-10 md:px-20 py-8">
+
+        <div class="flex flex-col items-center lg:flex-row-reverse justify-between">
+
+            <div class="wow animate__animated animate__fadeInLeft animate__slow">
+                <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Home</a>
+                <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">About</a>
+                <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Work</a>
+                <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Blog</a>
+                <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Contact</a>
+                <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Book a call</a>
+            </div>
+
+            <div class="mt-4 cursor-pointer">
+                <img src="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d2e4816a.png&w=128&q=75"
+                    class="w-32 wow animate__animated animate__fadeOut animate__slow">
+            </div>
+
+            <div
+                class="mt-4 text-xs font-bold text-gray-500 cursor-pointer wow animate__animated animate__fadeInLeft animate__slow">
+                © 2023 Tailwind Awesome. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a id="button" class="animate-bounce"></a>
+
+
+    <!-- Back to Top Button -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        var btn = $('#button');
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '300');
+        });
+    </script>
+
+    <!-- Slider -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+    <!-- WOW>js CDN Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+</body>
+
+</html>
